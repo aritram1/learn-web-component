@@ -5,8 +5,9 @@ class progressbar extends HTMLElement{
         
         //Create shadow root and copy template content to shadowRoot
         const shadow = this.attachShadow({mode : 'open'});
-        let container = this.template.querySelector('#container');
-        console.log('conainer' + container);
+            
+        let container = document.querySelector('#container');
+        console.log('container' + container);
         shadow.appendChild(container.cloneNode(true));
 
         //Create the progress bar div
