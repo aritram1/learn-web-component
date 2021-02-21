@@ -1,5 +1,5 @@
 .bar{
+    border : 2px solid green;
+    background-color: red;
     height: 10px;
-    width: 100px;
-    background-color: blue;
 }
