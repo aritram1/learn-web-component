@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="btnStart" type="button" value="Start"/>
+    <input id="btnStop" type="button" value="Stop"/>
+    <my-card title=""></my-card>
+</body>
+
+<!-- My Card Element -->
+<script>
+    class MyCard extends HTMLElement{
+        title = '';
+        static observedAttributes = ['title'];
+        constructor(){
+            super();
+            console.log();
+            console.log(`${Date.now()} : Constructor called!`);
+        }
+        connectedCallback(){
+            console.log('connectedCallback called!');
+        }
+        disconnectedCallback(){
+            console.log('disconnectedCallback called!');
+        }
+        attributeChangedCallback(name, oldValue, newValue){
+            console.log(`attributeChangedCallback called : ${name} changed from ${oldValue} to '${newValue}'`);
+        }
+        adoptedCallback() {
+            console.log('moved to new page');
+        }
+    }
+    customElements.define('my-card', MyCard);
+</script>
+
+<!-- Controller code -->
+<script>
+    let timerId;
+    document.getElementById('btnStart').addEventListener('click', handleStart);
+    document.getElementById('btnStop').addEventListener('click', handleStop);
+    function handleStart(){
+        console.log('Inside handleStart!');
+        timerId = setInterval(() => {
+            console.log('Hey!');
+        }, 1000);
+        console.log(`Timer started with Id : ${timerId}`);
+    }
+    function handleStop(){
+        console.log('Inside handleStop!');
+        console.log(`Timer stopped with Id : ${timerId}`);
+        clearInterval(timerId);
+    }
+</script>
+<!-- Controller code -->
+</html>
